@@ -1,3 +1,4 @@
+// This file contains the JWT verification middleware.
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 require('dotenv').config(); // Load environment variables

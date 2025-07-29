@@ -6,37 +6,41 @@ const generateToken = require('../utils/jwtUtils');
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { name, email, password, college, is_premium } = req.body;
 
     // Basic validation
-    if (!username || !email || !password) {
-        return res.status(400).json({ message: 'Please enter all fields' });
+    if (!name || !email || !password) {
+        return res.status(400).json({ message: 'Please enter all required fields (name, email, password)' });
     }
 
     try {
         // Check if user already exists
         const userExists = await User.findOne({ email });
         if (userExists) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(400).json({ message: 'User already exists with this email' });
         }
 
         // Create new user (password hashing is handled in User model pre-save hook)
         const user = await User.create({
-            username,
+            name,
             email,
             password,
+            college,
+            is_premium: is_premium || false, // Default to false if not provided
         });
 
         // Respond with user data and a JWT token
         if (user) {
             res.status(201).json({
                 _id: user._id,
-                username: user.username,
+                name: user.name,
                 email: user.email,
+                college: user.college,
+                is_premium: user.is_premium,
                 token: generateToken(user._id), // Generate JWT token
             });
         } else {
-            res.status(400).json({ message: 'Invalid user data' });
+            res.status(400).json({ message: 'Invalid user data provided' });
         }
     } catch (error) {
         console.error('Error during user registration:', error);
@@ -63,8 +67,10 @@ const loginUser = async (req, res) => {
         if (user && (await user.matchPassword(password))) {
             res.json({
                 _id: user._id,
-                username: user.username,
+                name: user.name,
                 email: user.email,
+                college: user.college,
+                is_premium: user.is_premium,
                 token: generateToken(user._id), // Generate JWT token
             });
         } else {

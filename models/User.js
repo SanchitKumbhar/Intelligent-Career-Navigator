@@ -1,12 +1,14 @@
+// This file defines your User schema and model.
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-    username: {
+    // user_id will be handled by Mongoose's default _id
+    name: {
         type: String,
         required: true,
-        unique: true,
-        trim: true
+        trim: true,
+        maxlength: 100 // Corresponds to VARCHAR(100)
     },
     email: {
         type: String,
@@ -16,12 +18,21 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         match: [/.+@.+\..+/, 'Please enter a valid email address'] // Basic email validation
     },
-    password: {
+    password: { // Corresponds to password_hash TEXT
         type: String,
         required: true,
         minlength: 6 // Minimum password length
     },
-    createdAt: {
+    college: {
+        type: String,
+        trim: true,
+        maxlength: 100 // Corresponds to VARCHAR(100)
+    },
+    is_premium: {
+        type: Boolean,
+        default: false // Corresponds to BOOLEAN DEFAULT FALSE
+    },
+    createdAt: { // Corresponds to created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         type: Date,
         default: Date.now
     }

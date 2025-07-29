@@ -1,3 +1,4 @@
+// This file defines the API routes for authentication.
 const express = require('express');
 const { registerUser, loginUser } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware'); // Import protect middleware
