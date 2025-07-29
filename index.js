@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const dotenv = require('dotenv');
 const connectDB = require('./dbconfig/db'); // Adjust path if your dbconfig file is named differently or located elsewhere
 const authRoutes = require('./routes/authRoutes');
@@ -13,6 +14,21 @@ connectDB();
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
+
+// filepath: /home/sanchit/Desktop/Intelligent Career Navigator /index.js
+const mongoose = require('mongoose');
+// ...existing code...
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch((err) => console.error('MongoDB connection error:', err));
+
+// ...existing code...
+
+// Routes
 // Define API routes
 app.use('/api/auth', authRoutes); // All authentication routes will be prefixed with /api/auth
 
@@ -21,6 +37,9 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
+
+
+// Start server
 // Error handling middleware (optional, but good practice)
 app.use((err, req, res, next) => {
     console.error(err.stack);
