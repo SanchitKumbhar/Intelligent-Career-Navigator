@@ -1,5 +1,6 @@
 // controllers/mentorController.js
-const Mentor = require('../models/mentor');
+const Mentor = require('../models/mentor'); 
+
 
 const createMentor = async (req, res) => {
     const { name, email, domain, college, available } = req.body;
