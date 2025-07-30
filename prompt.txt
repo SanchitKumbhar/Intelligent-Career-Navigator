@@ -1,0 +1,68 @@
+Create a responsive and modern Mock AI Interview Setup Page for a web platform called "Mini Interview Portal".
+🔹 Page Title:
+
+AI Mock Interview
+Practice with our AI interviewer and get real-time feedback to improve your performance
+🔧 Section: Interview Setup
+
+Add a clean and interactive form section with the following configuration options:
+1. Select Interview Type (Radio buttons or cards):
+
+    General Interview (Common behavioral and situational questions)
+
+    Technical Interview (Role-specific technical questions)
+
+    Leadership Interview (Focus on leadership and management skills)
+
+    Club Custom (Custom questions set by your college club)
+
+2. Role/Position (Text input or dropdown):
+
+Let the user enter or select their intended role (e.g., "Software Developer", "Team Lead", "Product Manager").
+3. Experience Level (Dropdown):
+
+    Fresher
+
+    1–2 years
+
+    3–5 years
+
+    5+ years
+
+4. Interview Duration (Slider or dropdown):
+
+Options:
+
+    5 minutes
+
+    10 minutes
+
+    15 minutes
+
+    20 minutes
+
+📋 Section: Before You Start (Checklist or Tips Box)
+
+Include a simple checklist or info box with the following preparation tips:
+
+    ✅ Ensure you have a stable internet connection
+
+    ✅ Find a quiet, well-lit space
+
+    ✅ Test your camera and microphone
+
+    ✅ Have a copy of your resume ready
+
+🟢 Action Button: Start Interview
+
+Place a prominent "Start Interview" button at the bottom of the form.
+On click: redirect to the AI Interview Interface or trigger an onboarding dialog.
+🖌️ Design Suggestions:
+
+    Use clean UI components (Material UI, Tailwind, or Bootstrap preferred)
+
+    Add icons next to interview types for better UX
+
+    Make the form responsive for mobile and desktop
+
+    Add subtle animation on form submission
